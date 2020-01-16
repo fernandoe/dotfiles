@@ -1,0 +1,176 @@
+" vim:fdm=marker
+
+" Basic {{{
+set nocompatible              " be iMproved, required
+filetype off                  " required
+syntax on
+
+set encoding=utf-8        " Encoding UTF-8
+set noshowmode            " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set t_Co=256
+set number                " show line numbers and relative numbers
+set autoindent            " indent when moving to the next line while writing code
+set smarttab
+set shiftwidth=2
+set tabstop=2
+set incsearch
+set showmatch
+set hlsearch
+
+set backupdir=/tmp,.
+set directory=/tmp,.
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" FZF
+set rtp+=~/.fzf
+
+" Make backspace work in macos
+set backspace=indent,eol,start
+
+" }}}
+
+" Plugins {{{
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'hashivim/vim-terraform'
+Plugin 'junegunn/fzf.vim'
+Plugin 'machakann/vim-highlightedyank'
+Plugin 'mhinz/vim-startify'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+"Should be always the last one
+Plugin 'ryanoasis/vim-devicons'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+" }}}
+
+" Other stuff {{{
+
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" vim-airline/vim-airline
+let g:airline_theme='luna'
+
+" Airline
+" Enable Airline
+let g:airline#extensions#branch#enabled = 1
+" Show list of buffers in tabline
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename in tabline
+let g:airline#extensions#tabline#fnamemod = ':t'
+" Use fonts
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+     let g:airline_symbols = {}
+endif
+
+" Airline symbols
+" let g:airline_left_sep = "\uE0C0"
+" let g:airline_right_sep = "\uE0C2"
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
+" Airline theme
+let g:airline_solarized_bg='dark'
+
+
+
+
+" NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+let g:NERDTreeIgnore = ['.git']
+
+
+" scrooloose/nerdcommenter
+filetype plugin on
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/bundle/fzf.vim/bin/preview.sh {}']}, <bang>0)
+
+" vim-highlightedyank: Note that the line should be located after :colorscheme
+" highlight HighlightedyankRegion cterm=reverse gui=reverse
+
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-g> :Rg<Cr>
+
+set guifont=FantasqueSansMono-Regular:h11
+
+let mapleader = " "
+noremap <Leader>s :update<CR>
+
+colorscheme apprentice
+
+set splitbelow
+set splitright
+" }}}
+
+" Custom Commands {{{
+
+" Navigation when the text is wrapped
+noremap j gj
+noremap k gk
+
+" Vertical split
+nnoremap <leader>w <C-w>v<C-w>l
+" Horizontal split
+nnoremap <leader>h <C-w>s<C-w>l
+
+" Swith between files with <space><space>
+nnoremap <leader><leader> <c-^>
+
+" Kubernetes
+nnoremap <leader>ka :update<CR>:!kubectl apply -f %<CR>
+" Makefile
+nnoremap <leader>mb :update<CR>:!make build<CR>
+" Buffers
+nnoremap <leader>n :bnext<CR>
+"nmap <c-b> :bprevious<CR>
+"nmap <c-n> :bnext<CR>
+"nmap bb :bw<CR>
+" }}}
