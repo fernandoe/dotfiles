@@ -47,8 +47,7 @@ brew cask install font-fantasque-sans-mono
 ```bash
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt update
-sudo apt install vim
-sudo apt install vim-gtk3
+sudo apt install -y vim vim-gtk3
 
 # For Ag
 sudo apt-get install -y silversearcher-ag
@@ -60,6 +59,20 @@ sudo apt-get install -y fonts-powerline
 
 
 ### Install
+
+#### tmux
+
+```bash
+# Ubuntu Xenial (16.04)
+curl -L https://gitreleases.dev/gh/fernandoe/tmux/latest/tmux_xenial --output ~/bin/tmux
+
+# Ubuntu Bionic (18.04)
+curl -L https://gitreleases.dev/gh/fernandoe/tmux/latest/tmux_bionic --output ~/bin/tmux
+
+chmod +x ~/bin/tmux
+```
+
+#### Vim
 
 ```bash
 git clone https://github.com/fernandoe/dotfiles.git ~/.dotfiles
