@@ -10,7 +10,7 @@
 # Normal Mode
 
 | Keys | Description                     |
-| ---- | ------------------------------- |
+|------|---------------------------------|
 | gg   | First line of the file          |
 | G    | Last line of the file           |
 | {    | Goes down a block of code       |
@@ -26,7 +26,7 @@
 # Actions
 
 | Keys | Description                                       |
-| ---- | ------------------------------------------------- |
+|------|---------------------------------------------------|
 | dd   | Delete a line                                     |
 | D    | Deletes from the cursor to the end of to the line |
 | x    | Delete a char                                     |
@@ -55,16 +55,19 @@
 
 # Custom
 
-| Keys       | Category | Description                                |
-| ---------- | -------- | ------------------------------------------ |
-| <leader>ve | vimrc    | Edit the .vimrc file                       |
-| <leader>vv | vimrc    | Save the .vimrc and reload the environment |
+| Keys             | Category      | Description                                                  |
+|------------------|---------------|--------------------------------------------------------------|
+| <leader>ve       | vimrc         | Edit the .vimrc file                                         |
+| <leader>vv       | vimrc         | Save the .vimrc and reload the environment                   |
+| <leader>cc       | nerdcommenter | Comment out the current line or text selected in visual mode |
+| <leader>c<space> | nerdcommenter | Toggles the comment state of the selected line(s).           |
+| <leader>cl       | nerdcommenter | NERDCommenterAlignLeft                                       |
 
 
 # General Keys
 
 | Keys       | Description                                             |
-| ---------- | ------------------------------------------------------- |
+|------------|---------------------------------------------------------|
 | <ctrl+r> * | will insert in the contents of the clipboard            |
 | <ctrl+r> " | (the unnamed register) inserts the last delete or yank. |
 | <crtl+w> v | split screen vertically                                 |
@@ -78,7 +81,7 @@
 # NERDTree
 
 | Keys | Description                                          |
-| ---- | ---------------------------------------------------- |
+|------|------------------------------------------------------|
 | o    | Open files, directories and bookmarks                |
 | go   | Open selected file, but leave cursor in the NERDTree |
 |      | Open selected bookmark dir in current NERDTree       |
